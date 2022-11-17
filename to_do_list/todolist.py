@@ -16,11 +16,13 @@ def printOptions():
     msgAskActionHead = 'Please select an option:'
     msgAction1CreateTask = '1 - Create New Task'
     msgAction2ListTasks = '2 - List Tasks'
-    msgAction3ListTasks = '3 - Exit'
+    msgAction3DeleteTask = '3 - Delete Task'
+    msgAction0Exit = '0 - Exit'
     print(msgAskActionHead)
     print(msgAction1CreateTask)
     print(msgAction2ListTasks)
-    print(msgAction3ListTasks)
+    print(msgAction3DeleteTask)
+    print(msgAction0Exit)
 
 
 def selectOption():
@@ -35,9 +37,12 @@ def selectOption():
             selectOption()
         case '2':
             if len(tasksList) != 0:
-                print('#########################################')
-                print('Your To-Do List: ', tasksList)
-                print('\n#########################################')
+                print('################### TO-DO-LIST ###################')
+                for i in range(len(tasksList)):
+                    print(i+1, '-', tasksList[i])
+
+                # print('Your To-Do List: ', tasksList)
+                print('\n################# END-OF-LIST ###################')
                 printOptions()
                 selectOption()
             else:
@@ -46,6 +51,17 @@ def selectOption():
                 print('#########################################\n')
                 printOptions()
                 selectOption()
+        case '3':
+            print('################### TO-DO-LIST ###################')
+            for i in range(len(tasksList)):
+                print(i+1, '-', tasksList[i])
+
+            print('\n################# END-OF-LIST ###################')
+            taskToDelete = int(input('Task to Delete: '))
+            tasksList.pop(taskToDelete-1)
+            print('Task Removed')
+            printOptions()
+            selectOption()
         case _:
             print('Thank You')
 
